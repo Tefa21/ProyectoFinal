@@ -1,7 +1,5 @@
 package Principal;
-
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +19,6 @@ public class Main extends javax.swing.JFrame {
         System.out.print("####Inicial####\n"+"Columna:"+columna_1+" Fila:"+fila_1+"\n");
         
     }
-    
     public void PosicionFinal(){
         columna_2 = this.JTB_Hoja.getSelectedColumn();
         fila_2 = this.JTB_Hoja.getSelectedRow();
@@ -33,21 +30,7 @@ public class Main extends javax.swing.JFrame {
     }
   
     
-    public void agregar_datos(String dato){
-        String dat;
-        dat = dato;
-        Nodo nodo=new Nodo(dat);
-	if (cima==null){
-            cima=nodo;
-        }
-        else{
-            Nodo puntero=cima;
-            while (puntero.Siguiente!=null) {
-                puntero=puntero.Siguiente;
-                }
-            puntero.Siguiente=nodo;
-	}
-    }
+    
     /*
     public void Mostrar(){
         
@@ -86,14 +69,8 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
-
         JTB_Hoja.setModel(hoja);
-        
-        for(int a=1; a<=27; a++){
-            hoja.addColumn(a);
-            for(int b=1; b<=100; b++)
-                hoja.addRow(new Object[]{});
-        }
+        TamañoHoja();
         new Pegado(JTB_Hoja);
         
     } 
@@ -110,8 +87,9 @@ public class Main extends javax.swing.JFrame {
         JTB_Hoja = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        JMI_Nuevo = new javax.swing.JMenuItem();
+        JMI_Guardar = new javax.swing.JMenuItem();
+        JMI_Abrir = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -143,6 +121,7 @@ public class Main extends javax.swing.JFrame {
 
             }
         ));
+        JTB_Hoja.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         JTB_Hoja.setCellSelectionEnabled(true);
         JTB_Hoja.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         JTB_Hoja.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -174,16 +153,24 @@ public class Main extends javax.swing.JFrame {
 
         jMenu2.setText("Archivo");
 
-        jMenuItem1.setText("Guardar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        JMI_Nuevo.setText("Nuevo");
+        JMI_Nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                JMI_NuevoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(JMI_Nuevo);
 
-        jMenuItem2.setText("Abrir");
-        jMenu2.add(jMenuItem2);
+        JMI_Guardar.setText("Guardar");
+        JMI_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMI_GuardarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(JMI_Guardar);
+
+        JMI_Abrir.setText("Abrir");
+        jMenu2.add(JMI_Abrir);
 
         jMenuBar1.add(jMenu2);
 
@@ -213,30 +200,20 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void JMI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_GuardarActionPerformed
              
         
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        String b = String.valueOf(hoja.getValueAt(JTB_Hoja.getSelectedRow(), JTB_Hoja.getSelectedColumn()));
-        JOptionPane.showMessageDialog(null, b);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        
-        JTB_Hoja.setBackground(Color.yellow);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_JMI_GuardarActionPerformed
 
     private void JTB_HojaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseClicked
        
@@ -279,6 +256,23 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_JTB_HojaKeyPressed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        String b = String.valueOf(hoja.getValueAt(JTB_Hoja.getSelectedRow(), JTB_Hoja.getSelectedColumn()));
+        JOptionPane.showMessageDialog(null, b);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+
+        JTB_Hoja.setBackground(Color.yellow);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void JMI_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_NuevoActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Seguro desea abrir otra Hoja Electronica, los cambios no se guardarán?",
+        "Nueva Hoja", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+         Limpiar();
+        }
+    }//GEN-LAST:event_JMI_NuevoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -313,8 +307,46 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void agregar_datos(String dato){
+        String dat;
+        dat = dato;
+        Nodo nodo=new Nodo(dat);
+	if (cima==null){
+            cima=nodo;
+        }
+        else{
+            Nodo puntero=cima;
+            while (puntero.Siguiente!=null) {
+                puntero=puntero.Siguiente;
+                }
+            puntero.Siguiente=nodo;
+	}
+    }
+    
+    public void TamañoHoja(){
+        for(int a=1; a<=27; a++){
+            hoja.addColumn(a);
+            for(int b=1; b<=100; b++)
+                hoja.addRow(new Object[]{});
+        }
+    }
+    
+    public void Limpiar(){
+        DefaultTableModel Nuevo = (DefaultTableModel) JTB_Hoja.getModel();
+        int a = JTB_Hoja.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {           
+            Nuevo.removeRow(Nuevo.getRowCount()-1);
+        }
+        for(int b=1; b<=100; b++){
+            hoja.addRow(new Object[]{});           
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem JMI_Abrir;
+    private javax.swing.JMenuItem JMI_Guardar;
+    private javax.swing.JMenuItem JMI_Nuevo;
     private javax.swing.JTable JTB_Hoja;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
@@ -322,8 +354,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
