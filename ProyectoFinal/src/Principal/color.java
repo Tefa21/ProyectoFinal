@@ -16,14 +16,14 @@ public class color extends DefaultTableCellRenderer{
       int column)
    {
       super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
-      if (  )
-      {
-         this.setOpaque(true);
-         this.setBackground(Color.RED);
-         this.setForeground(Color.YELLOW);
-      } else {
-         // Restaurar los valores por defecto
-      }
+//      if (  )
+//      {
+//         this.setOpaque(true);
+//         this.setBackground(Color.RED);
+//         this.setForeground(Color.YELLOW);
+//      } else {
+//         // Restaurar los valores por defecto
+//      }
 
       return this;
    }

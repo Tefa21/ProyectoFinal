@@ -1,6 +1,7 @@
 package Principal;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -8,17 +9,92 @@ import javax.swing.table.DefaultTableModel;
 public class Main extends javax.swing.JFrame {
     DefaultTableModel hoja = new DefaultTableModel(); //Declarar el modelo de la Tabla
 //    Object [] row = new Object[];
+    int columna_1, fila_1, columna_2, fila_2;
+    Nodo cima = null;
+    String a;
+    int dif_col, dif_fil;
+    
+    
+    public void PosicionInicial(){
+        columna_1 = this.JTB_Hoja.getSelectedColumn();
+        fila_1 = this.JTB_Hoja.getSelectedRow();
+        System.out.print("####Inicial####\n"+"Columna:"+columna_1+" Fila:"+fila_1+"\n");
+        
+    }
+    
+    public void PosicionFinal(){
+        columna_2 = this.JTB_Hoja.getSelectedColumn();
+        fila_2 = this.JTB_Hoja.getSelectedRow();
+        System.out.print("####Final####\n"+"Columna:"+columna_2+" Fila:"+fila_2+"\n");
+    }
+    public void mostrarpos(){
+        JOptionPane.showMessageDialog(null,"PosicionInicial\n"+" Columna: "+columna_1+"Fila: "+fila_1+"\nPosicionFinal\n"
+        +" Columna: "+columna_2+"Fila: "+fila_2);
+    }
+  
+    
+    public void agregar_datos(String dato){
+        String dat;
+        dat = dato;
+        Nodo nodo=new Nodo(dat);
+	if (cima==null){
+            cima=nodo;
+        }
+        else{
+            Nodo puntero=cima;
+            while (puntero.Siguiente!=null) {
+                puntero=puntero.Siguiente;
+                }
+            puntero.Siguiente=nodo;
+	}
+    }
+    /*
+    public void Mostrar(){
+        
+        String Datos [] = new String[1];
+        Nodo aux = cima;
+        while (aux!=null)
+            {
+                Datos[0] = String.valueOf(aux.info);
+                System.out.print("\n###Datos Lista###\n"+Datos[0]);
+                aux=aux.Siguiente;
+            }
+    }
+   
+    public void pegar(){
+        dif_col = Math.abs((columna_1-columna_2));
+        dif_fil = Math.abs((fila_1-fila_2));
+        System.out.print("\n Resta Col: "+dif_col+" Resta fila: "+dif_fil);
+        
+        String Datos [] = new String[1];
+        Nodo aux = cima;
+        for (int i = fila_2; i <= fila_2+dif_fil; i++) {
+            for (int j = columna_2; j <= columna_2+dif_col; j++) {
+                Datos[0] = String.valueOf(aux.info);
+                hoja.addRow(Datos);
+                aux=aux.Siguiente;
+            }
+    
+        }
+        
+            
+        
+        
+    }
+    */
+    
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
 
         JTB_Hoja.setModel(hoja);
+        
         for(int a=1; a<=27; a++){
             hoja.addColumn(a);
             for(int b=1; b<=100; b++)
                 hoja.addRow(new Object[]{});
         }
-        
+        new Pegado(JTB_Hoja);
         
     } 
     @SuppressWarnings("unchecked")
@@ -68,6 +144,31 @@ public class Main extends javax.swing.JFrame {
             }
         ));
         JTB_Hoja.setCellSelectionEnabled(true);
+        JTB_Hoja.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        JTB_Hoja.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                JTB_HojaMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                JTB_HojaMouseMoved(evt);
+            }
+        });
+        JTB_Hoja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTB_HojaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                JTB_HojaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                JTB_HojaMouseReleased(evt);
+            }
+        });
+        JTB_Hoja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JTB_HojaKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTB_Hoja);
         JTB_Hoja.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
@@ -128,14 +229,55 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        String a = String.valueOf(hoja.getValueAt(JTB_Hoja.getSelectedRow(), JTB_Hoja.getSelectedColumn()));
-        JOptionPane.showMessageDialog(null, a);
+        String b = String.valueOf(hoja.getValueAt(JTB_Hoja.getSelectedRow(), JTB_Hoja.getSelectedColumn()));
+        JOptionPane.showMessageDialog(null, b);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         
         JTB_Hoja.setBackground(Color.yellow);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void JTB_HojaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseClicked
+       
+        
+    }//GEN-LAST:event_JTB_HojaMouseClicked
+
+    private void JTB_HojaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseReleased
+        
+        
+    }//GEN-LAST:event_JTB_HojaMouseReleased
+
+    private void JTB_HojaMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseDragged
+        PosicionFinal();
+    }//GEN-LAST:event_JTB_HojaMouseDragged
+
+    private void JTB_HojaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMousePressed
+         PosicionInicial();
+    }//GEN-LAST:event_JTB_HojaMousePressed
+
+    private void JTB_HojaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseMoved
+        
+    }//GEN-LAST:event_JTB_HojaMouseMoved
+
+    private void JTB_HojaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTB_HojaKeyPressed
+        /*
+        if (evt.getKeyCode() == KeyEvent.VK_C){
+            
+                for(int i = fila_2; i<= fila_1; i++){
+                    for (int j = columna_2; j <= columna_1; j++) {
+                        a = String.valueOf(hoja.getValueAt(i, j));
+                        agregar_datos(a);
+                    }//fin for j
+                }//fin for i                               
+        }//if ctrl + C
+        if (evt.getKeyCode() == KeyEvent.VK_V){
+            Mostrar();
+            pegar();
+        }//if ctrl + v
+        */
+        
+    }//GEN-LAST:event_JTB_HojaKeyPressed
 
     /**
      * @param args the command line arguments
