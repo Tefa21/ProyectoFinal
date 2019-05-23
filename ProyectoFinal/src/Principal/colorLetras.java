@@ -5,14 +5,12 @@ import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.JColorChooser;
 
-
-public class colorCelda extends DefaultTableCellRenderer{
+public class colorLetras extends DefaultTableCellRenderer{
     
     public int[]filasColorear; //VEctor para verificar las celdas a colorear
     public int[]columnasColorear;
-    Color colorCelda;
+    Color colorLetra;
    @Override 
    
              
@@ -30,8 +28,7 @@ public class colorCelda extends DefaultTableCellRenderer{
              hasFocus,row,column);
       if(validarFila(row)&&validarColumna(column)){//Se verfican las celdas en el vector para colorearlas 
           
-
-          this.setBackground(colorCelda); //Se le asigna un color
+          this.setForeground(colorLetra); //Se le asigna un color
                 
       }else{
           this.setBackground(null);
@@ -77,4 +74,3 @@ public class colorCelda extends DefaultTableCellRenderer{
    
 
 }
-

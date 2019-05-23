@@ -4,15 +4,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.Iterator;
+import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import say.swing.JFontChooser;
 
 
 public class Main extends javax.swing.JFrame {
     DefaultTableModel hoja = new DefaultTableModel(); //Declarar el modelo de la Tabla
     Nodo cima = null;
+    JFontChooser font;
                
     public Main() {
         initComponents();
@@ -155,8 +158,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_JMI_GuardarActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        String b = String.valueOf(hoja.getValueAt(JTB_Hoja.getSelectedRow(), JTB_Hoja.getSelectedColumn()));
-        JOptionPane.showMessageDialog(null, b);
+        letrasColor();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -182,20 +184,42 @@ public class Main extends javax.swing.JFrame {
     }
     void celdasColoreadas(){ //Metodo para asignarle al ArrayList las celdas a colorear
     
-        ArrayList obtenerFilas = new ArrayList<Integer>(); //Se crea el ArrayList
+//        ArrayList obtenerFilas = new ArrayList<Integer>(); //Se crea el ArrayList
 //        ArrayList obtenerColumnas = new ArrayList<Integer>(); //Se crea el ArrayList
-
-        obtenerFilas.add(JTB_Hoja.getSelectedRow()); //Se ingresan las celdas selecionadas al ArrayList
-//        obtenerColumnas.add(JTB_Hoja.getSelectedColumn());
-        
-        if(!obtenerFilas.isEmpty()/*&&!obtenerColumnas.isEmpty()*/){ //Se verifica que se hayan selecionado celdas
+ 
+        int []obtenerFilas=JTB_Hoja.getSelectedRows(); //Se ingresan las celdas selecionadas al ArrayList
+        int []obtenerColumnas=JTB_Hoja.getSelectedColumns();
+        Color c = JColorChooser.showDialog(this, "Seleccion color" , Color.white); 
+//        if(!obtenerFilas.isEmpty()&&!obtenerColumnas.isEmpty()){ //Se verifica que se hayan selecionado celdas
             
             colorCelda pintar = new colorCelda(); //Variable de tipo colorCelda
-            pintar.filasColorear=convertirArrayList(obtenerFilas); //Se envia el vector a la clase colorear
-//          pintar.columnasColorear=convertirArrayList(obtenerColumnas);
+            pintar.filasColorear=obtenerFilas; //Se envia el vector a la clase colorear
+            pintar.columnasColorear=obtenerColumnas;
+            pintar.colorCelda=c;
             JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
             
-        }
+//        }
+    }
+    
+    void letrasColor(){ //Metodo para asignarle al ArrayList las celdas a colorear
+    
+//        ArrayList obtenerFilas = new ArrayList<Integer>(); //Se crea el ArrayList
+//        ArrayList obtenerColumnas = new ArrayList<Integer>(); //Se crea el ArrayList
+ 
+        int []obtenerFilas=JTB_Hoja.getSelectedRows(); //Se ingresan las celdas selecionadas al ArrayList
+        int []obtenerColumnas=JTB_Hoja.getSelectedColumns();
+        Color c = JColorChooser.showDialog(this, "Seleccion color" , Color.white); 
+
+//        if(!obtenerFilas.isEmpty()&&!obtenerColumnas.isEmpty()){ //Se verifica que se hayan selecionado celdas
+            
+            colorLetras pintar = new colorLetras(); //Variable de tipo colorCelda
+            pintar.filasColorear=obtenerFilas; //Se envia el vector a la clase colorear
+            pintar.columnasColorear=obtenerColumnas;
+            pintar.colorLetra=c;
+
+            JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
+            
+//        }
     }
     private void JMI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_AbrirActionPerformed
         AbrirFile();
