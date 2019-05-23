@@ -1,11 +1,9 @@
 package Principal;
 
 public class Nodo {
-    String info;
-	public Nodo Siguiente;
-	public Nodo (String dato){
-		info=dato;
-                
-	}
-
+    public Lista lista;
+    public Nodo Siguiente = null;
+    public Nodo(Lista lista){
+        this.lista=lista;
+    }
 }

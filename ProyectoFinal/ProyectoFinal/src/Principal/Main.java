@@ -14,29 +14,49 @@ import javax.swing.table.DefaultTableModel;
 public class Main extends javax.swing.JFrame {
     DefaultTableModel hoja = new DefaultTableModel(); //Declarar el modelo de la Tabla
 //    Object [] row = new Object[];
-    int columna_1, fila_1, columna_2, fila_2;
+//    int columna_1, fila_1, columna_2, fila_2;
     Nodo cima = null;
-    String a;
-    int dif_col, dif_fil;
+//    String a;
+//    int dif_col, dif_fil;
     
     
-    public void PosicionInicial(){
-        columna_1 = this.JTB_Hoja.getSelectedColumn();
-        fila_1 = this.JTB_Hoja.getSelectedRow();
-        System.out.print("####Inicial####\n"+"Columna:"+columna_1+" Fila:"+fila_1+"\n");
+//    public void PosicionInicial(){
+//        columna_1 = this.JTB_Hoja.getSelectedColumn();
+//        fila_1 = this.JTB_Hoja.getSelectedRow();
+//        System.out.print("####Inicial####\n"+"Columna:"+columna_1+" Fila:"+fila_1+"\n");
+//        
+//    }
+//    public void PosicionFinal(){
+//        columna_2 = this.JTB_Hoja.getSelectedColumn();
+//        fila_2 = this.JTB_Hoja.getSelectedRow();
+//        System.out.print("####Final####\n"+"Columna:"+columna_2+" Fila:"+fila_2+"\n");
+//    }
+//    public void mostrarpos(){
+//        JOptionPane.showMessageDialog(null,"PosicionInicial\n"+" Columna: "+columna_1+"Fila: "+fila_1+"\nPosicionFinal\n"
+//        +" Columna: "+columna_2+"Fila: "+fila_2);
+//    }
+    
+    public void GuardarTabla(String dato, int fila, int columna){
+        String Dato = dato;
+        int Fila = fila, Columna = columna;
+        Lista Nueva = new Lista(Dato,Fila,Columna);
+        agregar_datos(Nueva);
+    }
+    
+    public void agregar_datos(Lista lista){
+        Nodo nodo=new Nodo(lista);
+	if (cima==null){
+            cima=nodo;
+        }
+        else{
+            Nodo puntero=cima;
+            while (puntero.Siguiente!=null) {
+                puntero=puntero.Siguiente;
+                }
+            puntero.Siguiente=nodo;
+	}
+    }
         
-    }
-    public void PosicionFinal(){
-        columna_2 = this.JTB_Hoja.getSelectedColumn();
-        fila_2 = this.JTB_Hoja.getSelectedRow();
-        System.out.print("####Final####\n"+"Columna:"+columna_2+" Fila:"+fila_2+"\n");
-    }
-    public void mostrarpos(){
-        JOptionPane.showMessageDialog(null,"PosicionInicial\n"+" Columna: "+columna_1+"Fila: "+fila_1+"\nPosicionFinal\n"
-        +" Columna: "+columna_2+"Fila: "+fila_2);
-    }
-  
-    
     
     /*
     public void Mostrar(){
@@ -65,13 +85,11 @@ public class Main extends javax.swing.JFrame {
                 aux=aux.Siguiente;
             }
     
-        }
-        
-            
-        
-        
+        }   
     }
     */
+    
+
     
     public Main() {
         initComponents();
@@ -224,7 +242,17 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_GuardarActionPerformed
-             DatosTabla();
+        int fila, columna;
+        String dato;
+        fila = this.JTB_Hoja.getRowCount();
+        columna = this.JTB_Hoja.getColumnCount(); 
+        for (int i = 0; i < fila; i++) {
+            for (int j = 0; j < columna; j++) {
+                dato = String.valueOf(hoja.getValueAt(i, j));
+                GuardarTabla(dato, i, j);
+            }
+        }         
+        DatosTabla();
     }//GEN-LAST:event_JMI_GuardarActionPerformed
 
     private void JTB_HojaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseClicked
@@ -238,11 +266,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_JTB_HojaMouseReleased
 
     private void JTB_HojaMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseDragged
-        PosicionFinal();
+//        PosicionFinal();
     }//GEN-LAST:event_JTB_HojaMouseDragged
 
     private void JTB_HojaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMousePressed
-         PosicionInicial();
+//         PosicionInicial();
     }//GEN-LAST:event_JTB_HojaMousePressed
 
     private void JTB_HojaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseMoved
@@ -324,21 +352,7 @@ public class Main extends javax.swing.JFrame {
         });
     }
     
-    public void agregar_datos(String dato, int F, int C){
-        String Info;
-        Info = dato;
-        Nodo celda = new Nodo(Info);
-	if (cima==null){
-            cima=celda;
-        }
-        else{
-            Nodo puntero=cima;
-            while (puntero.Siguiente!=null) {
-                puntero=puntero.Siguiente;
-                }
-            puntero.Siguiente=celda;
-	}
-    }
+
     
     public void TamañoHoja(){
         for(int a=1; a<=20; a++)
