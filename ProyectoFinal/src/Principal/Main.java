@@ -1,5 +1,6 @@
 package Principal;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,8 +30,33 @@ public class Main extends javax.swing.JFrame {
         +" Columna: "+columna_2+"Fila: "+fila_2);
     }
   
+    //Metodo para convertir ArrayList en vector
+    public static Integer[] convertirArrayList(ArrayList<Integer> alDatos){
+        Integer[] arrResultante = new Integer[alDatos.size()]; //Vector al que se le va a pasar el Array List
+        
+        for (int i = 0; i < alDatos.size(); i++) {  //Ciclo para Recorrer el Array List e ingresarlo al vector
+            arrResultante[i]=alDatos.get(i); 
+        }
+        
+        return arrResultante; //Retorna el nuevo Vector
+    }
+    void celdasColoreadas(){ //Metodo para asignarle al ArrayList las celdas a colorear
     
-    
+        ArrayList obtenerFilas = new ArrayList<Integer>(); //Se crea el ArrayList
+        ArrayList obtenerColumnas = new ArrayList<Integer>(); //Se crea el ArrayList
+
+        obtenerFilas.add(JTB_Hoja.getSelectedRow()); //Se ingresan las celdas selecionadas al ArrayList
+        obtenerColumnas.add(JTB_Hoja.getSelectedColumn());
+        
+        if(!obtenerFilas.isEmpty()&&!obtenerColumnas.isEmpty()){ //Se verifica que se hayan selecionado celdas
+            
+            colorCelda pintar = new colorCelda(); //Variable de tipo colorCelda
+            pintar.filasColorear=convertirArrayList(obtenerFilas); //Se envia el vector a la clase colorear
+            pintar.columnasColorear=convertirArrayList(obtenerColumnas);
+            JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
+            
+        }
+    }
     /*
     public void Mostrar(){
         
@@ -185,6 +211,11 @@ public class Main extends javax.swing.JFrame {
         jMenu4.add(jMenuItem4);
 
         jMenuItem5.setText("Cambiar Color");
+        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem5MouseClicked(evt);
+            }
+        });
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -212,7 +243,8 @@ public class Main extends javax.swing.JFrame {
 
     private void JMI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_GuardarActionPerformed
              
-        
+     
+             
     }//GEN-LAST:event_JMI_GuardarActionPerformed
 
     private void JTB_HojaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseClicked
@@ -262,8 +294,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-
-        JTB_Hoja.setBackground(Color.yellow);
+                        celdasColoreadas();
+                        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void JMI_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_NuevoActionPerformed
@@ -272,6 +304,11 @@ public class Main extends javax.swing.JFrame {
          Limpiar();
         }
     }//GEN-LAST:event_JMI_NuevoActionPerformed
+
+    private void jMenuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem5MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jMenuItem5MouseClicked
 
     /**
      * @param args the command line arguments
