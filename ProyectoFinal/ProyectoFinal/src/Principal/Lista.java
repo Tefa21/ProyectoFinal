@@ -1,6 +1,5 @@
 package Principal;
 
-
 public class Lista {
     public String Dato;
     public int Fila;
