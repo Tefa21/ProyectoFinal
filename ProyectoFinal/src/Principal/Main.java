@@ -1,7 +1,10 @@
 package Principal;
-
 import java.awt.Color;
+<<<<<<< HEAD
 import java.awt.event.KeyEvent;
+=======
+import java.util.ArrayList;
+>>>>>>> fcf876b3a8afe261c2270e2901f62e715cf3a2a0
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,6 +15,11 @@ public class Main extends javax.swing.JFrame {
     int columna_1, fila_1, columna_2, fila_2;
     Nodo cima = null;
     String a;
+<<<<<<< HEAD
+=======
+    int dif_col, dif_fil;
+    
+>>>>>>> fcf876b3a8afe261c2270e2901f62e715cf3a2a0
     
     public void PosicionInicial(){
         columna_1 = this.JTB_Hoja.getSelectedColumn();
@@ -19,7 +27,10 @@ public class Main extends javax.swing.JFrame {
         System.out.print("####Inicial####\n"+"Columna:"+columna_1+" Fila:"+fila_1+"\n");
         
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> fcf876b3a8afe261c2270e2901f62e715cf3a2a0
     public void PosicionFinal(){
         columna_2 = this.JTB_Hoja.getSelectedColumn();
         fila_2 = this.JTB_Hoja.getSelectedRow();
@@ -30,6 +41,7 @@ public class Main extends javax.swing.JFrame {
         +" Columna: "+columna_2+"Fila: "+fila_2);
     }
   
+<<<<<<< HEAD
     
     public void agregar_datos(Lista lista){
         Nodo nodo=new Nodo(lista);
@@ -64,18 +76,85 @@ public class Main extends javax.swing.JFrame {
     }
     
     
+=======
+    //Metodo para convertir ArrayList en vector
+    public static Integer[] convertirArrayList(ArrayList<Integer> alDatos){
+        Integer[] arrResultante = new Integer[alDatos.size()]; //Vector al que se le va a pasar el Array List
+        
+        for (int i = 0; i < alDatos.size(); i++) {  //Ciclo para Recorrer el Array List e ingresarlo al vector
+            arrResultante[i]=alDatos.get(i); 
+        }
+        
+        return arrResultante; //Retorna el nuevo Vector
+    }
+    void celdasColoreadas(){ //Metodo para asignarle al ArrayList las celdas a colorear
+    
+        ArrayList obtenerFilas = new ArrayList<Integer>(); //Se crea el ArrayList
+//        ArrayList obtenerColumnas = new ArrayList<Integer>(); //Se crea el ArrayList
+
+        obtenerFilas.add(JTB_Hoja.getSelectedRow()); //Se ingresan las celdas selecionadas al ArrayList
+//        obtenerColumnas.add(JTB_Hoja.getSelectedColumn());
+        
+        if(!obtenerFilas.isEmpty()/*&&!obtenerColumnas.isEmpty()*/){ //Se verifica que se hayan selecionado celdas
+            
+            colorCelda pintar = new colorCelda(); //Variable de tipo colorCelda
+            pintar.filasColorear=convertirArrayList(obtenerFilas); //Se envia el vector a la clase colorear
+//          pintar.columnasColorear=convertirArrayList(obtenerColumnas);
+            JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
+            
+        }
+    }
+    /*
+    public void Mostrar(){
+        
+        String Datos [] = new String[1];
+        Nodo aux = cima;
+        while (aux!=null)
+            {
+                Datos[0] = String.valueOf(aux.info);
+                System.out.print("\n###Datos Lista###\n"+Datos[0]);
+                aux=aux.Siguiente;
+            }
+    }
+   
+    public void pegar(){
+        dif_col = Math.abs((columna_1-columna_2));
+        dif_fil = Math.abs((fila_1-fila_2));
+        System.out.print("\n Resta Col: "+dif_col+" Resta fila: "+dif_fil);
+        
+        String Datos [] = new String[1];
+        Nodo aux = cima;
+        for (int i = fila_2; i <= fila_2+dif_fil; i++) {
+            for (int j = columna_2; j <= columna_2+dif_col; j++) {
+                Datos[0] = String.valueOf(aux.info);
+                hoja.addRow(Datos);
+                aux=aux.Siguiente;
+            }
+    
+        }
+        
+            
+        
+        
+    }
+    */
+>>>>>>> fcf876b3a8afe261c2270e2901f62e715cf3a2a0
     
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
-
         JTB_Hoja.setModel(hoja);
+<<<<<<< HEAD
         for(int a=1; a<=3; a++){
             hoja.addColumn(a);
             for(int b=1; b<=3; b++)
                 hoja.addRow(new Object[]{});
         }
         
+=======
+        TamañoHoja();
+        new Pegado(JTB_Hoja);
+>>>>>>> fcf876b3a8afe261c2270e2901f62e715cf3a2a0
         
     } 
     @SuppressWarnings("unchecked")
@@ -91,8 +170,9 @@ public class Main extends javax.swing.JFrame {
         JTB_Hoja = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        JMI_Nuevo = new javax.swing.JMenuItem();
+        JMI_Guardar = new javax.swing.JMenuItem();
+        JMI_Abrir = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -125,7 +205,12 @@ public class Main extends javax.swing.JFrame {
 
             }
         ));
+        JTB_Hoja.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         JTB_Hoja.setCellSelectionEnabled(true);
+<<<<<<< HEAD
+=======
+        JTB_Hoja.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+>>>>>>> fcf876b3a8afe261c2270e2901f62e715cf3a2a0
         JTB_Hoja.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 JTB_HojaMouseDragged(evt);
@@ -155,16 +240,24 @@ public class Main extends javax.swing.JFrame {
 
         jMenu2.setText("Archivo");
 
-        jMenuItem1.setText("Guardar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        JMI_Nuevo.setText("Nuevo");
+        JMI_Nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                JMI_NuevoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(JMI_Nuevo);
 
-        jMenuItem2.setText("Abrir");
-        jMenu2.add(jMenuItem2);
+        JMI_Guardar.setText("Guardar");
+        JMI_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMI_GuardarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(JMI_Guardar);
+
+        JMI_Abrir.setText("Abrir");
+        jMenu2.add(JMI_Abrir);
 
         jMenuBar1.add(jMenu2);
 
@@ -179,6 +272,11 @@ public class Main extends javax.swing.JFrame {
         jMenu4.add(jMenuItem4);
 
         jMenuItem5.setText("Cambiar Color");
+        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem5MouseClicked(evt);
+            }
+        });
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -202,20 +300,62 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void JMI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_GuardarActionPerformed
              
+     
+             
+    }//GEN-LAST:event_JMI_GuardarActionPerformed
+
+    private void JTB_HojaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseClicked
+       
         
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_JTB_HojaMouseClicked
+
+    private void JTB_HojaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseReleased
+        
+        
+    }//GEN-LAST:event_JTB_HojaMouseReleased
+
+    private void JTB_HojaMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseDragged
+        PosicionFinal();
+    }//GEN-LAST:event_JTB_HojaMouseDragged
+
+    private void JTB_HojaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMousePressed
+         PosicionInicial();
+    }//GEN-LAST:event_JTB_HojaMousePressed
+
+    private void JTB_HojaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseMoved
+        
+    }//GEN-LAST:event_JTB_HojaMouseMoved
+
+    private void JTB_HojaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTB_HojaKeyPressed
+        /*
+        if (evt.getKeyCode() == KeyEvent.VK_C){
+            
+                for(int i = fila_2; i<= fila_1; i++){
+                    for (int j = columna_2; j <= columna_1; j++) {
+                        a = String.valueOf(hoja.getValueAt(i, j));
+                        agregar_datos(a);
+                    }//fin for j
+                }//fin for i                               
+        }//if ctrl + C
+        if (evt.getKeyCode() == KeyEvent.VK_V){
+            Mostrar();
+            pegar();
+        }//if ctrl + v
+        */
+        
+    }//GEN-LAST:event_JTB_HojaKeyPressed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         String b = String.valueOf(hoja.getValueAt(JTB_Hoja.getSelectedRow(), JTB_Hoja.getSelectedColumn()));
@@ -223,10 +363,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        
-        JTB_Hoja.setBackground(Color.yellow);
+                        celdasColoreadas();
+                        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+<<<<<<< HEAD
     private void JTB_HojaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTB_HojaMouseClicked
         int fila, columna;
         fila = this.JTB_Hoja.getRowCount();
@@ -279,6 +420,19 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+=======
+    private void JMI_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_NuevoActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Seguro desea abrir otra Hoja Electronica, los cambios no se guardarán?",
+        "Nueva Hoja", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+         Limpiar();
+        }
+    }//GEN-LAST:event_JMI_NuevoActionPerformed
+
+    private void jMenuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem5MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jMenuItem5MouseClicked
+>>>>>>> fcf876b3a8afe261c2270e2901f62e715cf3a2a0
 
     /**
      * @param args the command line arguments
@@ -314,8 +468,46 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void agregar_datos(String dato){
+        String dat;
+        dat = dato;
+        Nodo nodo=new Nodo(dat);
+	if (cima==null){
+            cima=nodo;
+        }
+        else{
+            Nodo puntero=cima;
+            while (puntero.Siguiente!=null) {
+                puntero=puntero.Siguiente;
+                }
+            puntero.Siguiente=nodo;
+	}
+    }
+    
+    public void TamañoHoja(){
+        for(int a=1; a<=27; a++){
+            hoja.addColumn(a);
+            for(int b=1; b<=100; b++)
+                hoja.addRow(new Object[]{});
+        }
+    }
+    
+    public void Limpiar(){
+        DefaultTableModel Nuevo = (DefaultTableModel) JTB_Hoja.getModel();
+        int a = JTB_Hoja.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {           
+            Nuevo.removeRow(Nuevo.getRowCount()-1);
+        }
+        for(int b=1; b<=100; b++){
+            hoja.addRow(new Object[]{});           
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem JMI_Abrir;
+    private javax.swing.JMenuItem JMI_Guardar;
+    private javax.swing.JMenuItem JMI_Nuevo;
     private javax.swing.JTable JTB_Hoja;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
@@ -323,8 +515,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
