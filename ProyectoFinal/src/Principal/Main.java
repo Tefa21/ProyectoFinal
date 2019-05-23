@@ -43,16 +43,16 @@ public class Main extends javax.swing.JFrame {
     void celdasColoreadas(){ //Metodo para asignarle al ArrayList las celdas a colorear
     
         ArrayList obtenerFilas = new ArrayList<Integer>(); //Se crea el ArrayList
-        ArrayList obtenerColumnas = new ArrayList<Integer>(); //Se crea el ArrayList
+//        ArrayList obtenerColumnas = new ArrayList<Integer>(); //Se crea el ArrayList
 
         obtenerFilas.add(JTB_Hoja.getSelectedRow()); //Se ingresan las celdas selecionadas al ArrayList
-        obtenerColumnas.add(JTB_Hoja.getSelectedColumn());
+//        obtenerColumnas.add(JTB_Hoja.getSelectedColumn());
         
-        if(!obtenerFilas.isEmpty()&&!obtenerColumnas.isEmpty()){ //Se verifica que se hayan selecionado celdas
+        if(!obtenerFilas.isEmpty()/*&&!obtenerColumnas.isEmpty()*/){ //Se verifica que se hayan selecionado celdas
             
             colorCelda pintar = new colorCelda(); //Variable de tipo colorCelda
             pintar.filasColorear=convertirArrayList(obtenerFilas); //Se envia el vector a la clase colorear
-            pintar.columnasColorear=convertirArrayList(obtenerColumnas);
+//          pintar.columnasColorear=convertirArrayList(obtenerColumnas);
             JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
             
         }
