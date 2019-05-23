@@ -160,7 +160,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       JTB_Hoja.setBackground(Color.yellow);
+       celdasColoreadas();
+        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void JMI_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_NuevoActionPerformed
@@ -169,7 +170,33 @@ public class Main extends javax.swing.JFrame {
          Limpiar();
         }
     }//GEN-LAST:event_JMI_NuevoActionPerformed
+     //Metodo para convertir ArrayList en vector
+    public static Integer[] convertirArrayList(ArrayList<Integer> alDatos){
+        Integer[] arrResultante = new Integer[alDatos.size()]; //Vector al que se le va a pasar el Array List
+        
+        for (int i = 0; i < alDatos.size(); i++) {  //Ciclo para Recorrer el Array List e ingresarlo al vector
+            arrResultante[i]=alDatos.get(i); 
+        }
+        
+        return arrResultante; //Retorna el nuevo Vector
+    }
+    void celdasColoreadas(){ //Metodo para asignarle al ArrayList las celdas a colorear
+    
+        ArrayList obtenerFilas = new ArrayList<Integer>(); //Se crea el ArrayList
+//        ArrayList obtenerColumnas = new ArrayList<Integer>(); //Se crea el ArrayList
 
+        obtenerFilas.add(JTB_Hoja.getSelectedRow()); //Se ingresan las celdas selecionadas al ArrayList
+//        obtenerColumnas.add(JTB_Hoja.getSelectedColumn());
+        
+        if(!obtenerFilas.isEmpty()/*&&!obtenerColumnas.isEmpty()*/){ //Se verifica que se hayan selecionado celdas
+            
+            colorCelda pintar = new colorCelda(); //Variable de tipo colorCelda
+            pintar.filasColorear=convertirArrayList(obtenerFilas); //Se envia el vector a la clase colorear
+//          pintar.columnasColorear=convertirArrayList(obtenerColumnas);
+            JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
+            
+        }
+    }
     private void JMI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_AbrirActionPerformed
         AbrirFile();
     }//GEN-LAST:event_JMI_AbrirActionPerformed
