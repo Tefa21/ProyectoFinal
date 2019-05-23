@@ -65,8 +65,22 @@ public class Pegado implements ActionListener {
     StringTokenizer Token1,Token_de_pegado;
     //la variable Token1 se encargara de almacenar el contenido de cada variable "dato" y la separara con un "\n"  
     Token1=new StringTokenizer(dato,"\n");
+    //Se declara una variable que hara el conteo de filas por medio de tokens del area seleccionada a pegar por el usuario
+    int Filas_a_Pegar=Token1.countTokens ();
     //la variable Token1 se encargara de almacenar y separar cada dato siguiente de Token1 por medio de un "\t"
     Token1=new StringTokenizer(Token1.nextToken ().trim (),"\t");
+    //Se declara una variable que hara el conteo de columnas por medio de tokens del area seleccionada a pegar por el usuario
+    int Col_a_Pegar=Token1.countTokens ();
+    //variable que se encargara de obtener los datos entre todas las columnas existentes y le resta la columna seleccionada por el usuario
+    int MargenCol=Hoja_Excel.getColumnCount()-Dato_Col;
+      //variable que se encargara de obtener los datos entre todas las filas existentes y le resta la fila seleccionada por el usuario
+    int MargenFila=Hoja_Excel.getRowCount()-Dato_Fila;
+    //verificacion en caso el usuario desee pegar los datos en un area de la Tabla donde no existan columnas o filas suficientes
+    if(MargenCol<Col_a_Pegar || MargenFila<Filas_a_Pegar){
+        
+        JOptionPane.showMessageDialog(null,"La Tabla NO Posee el Espacio Suficiente para Pegar los Datos","Aviso",JOptionPane.ERROR_MESSAGE);
+        return;
+    }    
     //la variable Token1 se encargara de almacenar el contenido de cada variable "dato" y la separara con un "\n"  
         Token1=new StringTokenizer (dato,"\n");
     //Declaracion de variables usadas para el contador en el siguiente ciclo while
