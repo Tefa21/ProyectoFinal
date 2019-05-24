@@ -144,6 +144,9 @@ public class Main extends javax.swing.JFrame {
 
     private void JMI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_GuardarActionPerformed
         RemoverNull();
+        //Se Obtiene la cantidad de filas y columnas, luego procede a recorrer toda la tabla
+        //obteniendo el dato que se encuentra en cada celda, el No. de fila y el No. de columna en la que se encuentra
+        //y estos datos los envia al metodo GuardarTabla.
         int fila, columna;
         String dato;
         fila = this.JTB_Hoja.getRowCount();
@@ -292,6 +295,8 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void GuardarTabla(String dato, int fila, int columna){
+        //Datos Obtenidos al seleccionar la opcion guarda del JMenuBar
+        //Usando la clase lista crea un objeto lista donde se guardan los datos enviados.
         String Dato = dato;
         int Fila = fila, Columna = columna;
         Lista Nueva = new Lista(Dato,Fila,Columna);
@@ -299,6 +304,8 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void agregar_datos(Lista lista){
+        //Obtiene el objeto tipo lista y lo guarda en un nodo.
+        //Cada dato se inserta al final
         Nodo nodo=new Nodo(lista);
 	if (cima==null){
             cima=nodo;
@@ -366,14 +373,14 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void RemoverNull(){
+        //Se obtiene la cantidad de filas y columnas de la tabla y luego se recorre la tabla
+        //Asignando "" a cada celda y asi remover el dato null
         int fila, columna;
         fila = this.JTB_Hoja.getRowCount();
         columna = this.JTB_Hoja.getColumnCount(); 
         for (int i = 0; i < fila; i++) {
             for (int j = 0; j < columna; j++) {
                 this.JTB_Hoja.setValueAt("", i, j);
-                String dato = String.valueOf(this.JTB_Hoja.getValueAt(i, j));
-                System.out.print("Dato:"+dato+"...");
             }
         }         
     }
