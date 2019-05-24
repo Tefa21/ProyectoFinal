@@ -36,14 +36,18 @@ public class Main extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTB_Hoja = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        JBT_cambiarFuenteColor = new javax.swing.JButton();
+        JBT_cambarFondo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        JBT_alineadoIzq = new javax.swing.JButton();
+        JBT_alineadoCent = new javax.swing.JButton();
+        JBT_alineadoDerc = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         JMI_Nuevo = new javax.swing.JMenuItem();
         JMI_Guardar = new javax.swing.JMenuItem();
         JMI_Abrir = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -78,6 +82,83 @@ public class Main extends javax.swing.JFrame {
         jScrollPane1.setViewportView(JTB_Hoja);
         JTB_Hoja.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
+        JBT_cambiarFuenteColor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/font-symbol-of-letter-a_icon-icons.com_73556.png"))); // NOI18N
+        JBT_cambiarFuenteColor.setText("Cambiar Color Fuente");
+        JBT_cambiarFuenteColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBT_cambiarFuenteColorActionPerformed(evt);
+            }
+        });
+
+        JBT_cambarFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/software_paintbucket_39795 (1).png"))); // NOI18N
+        JBT_cambarFondo.setText("Cambiar Fondo");
+        JBT_cambarFondo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBT_cambarFondoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Alineado");
+
+        JBT_alineadoIzq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/text-align-left_icon-icons.com_48215.png"))); // NOI18N
+        JBT_alineadoIzq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBT_alineadoIzqActionPerformed(evt);
+            }
+        });
+
+        JBT_alineadoCent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/text-align-center_icon-icons.com_48217.png"))); // NOI18N
+        JBT_alineadoCent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBT_alineadoCentActionPerformed(evt);
+            }
+        });
+
+        JBT_alineadoDerc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/text-align-right_icon-icons.com_48214.png"))); // NOI18N
+        JBT_alineadoDerc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBT_alineadoDercActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JBT_cambarFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JBT_cambiarFuenteColor)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JBT_alineadoIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JBT_alineadoCent, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JBT_alineadoDerc, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(309, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(JBT_cambarFondo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(JBT_cambiarFuenteColor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(JBT_alineadoCent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(JBT_alineadoDerc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JBT_alineadoIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addGap(9, 9, 9)))
+                .addContainerGap())
+        );
+
         jMenu2.setText("Archivo");
 
         JMI_Nuevo.setText("Nuevo");
@@ -106,37 +187,22 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu4.setText("Funciones");
-
-        jMenuItem4.setText("Leer celda seleccionada");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem4);
-
-        jMenuItem5.setText("Cambiar Color");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem5);
-
-        jMenuBar1.add(jMenu4);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,30 +223,24 @@ public class Main extends javax.swing.JFrame {
         GuardarBD();
     }//GEN-LAST:event_JMI_GuardarActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        letrasColor();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       celdasColoreadas();
-        
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
     private void JMI_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_NuevoActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "¿Seguro desea abrir otra Hoja Electronica, los cambios no se guardarán?",
         "Nueva Hoja", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
          Limpiar();
         }
     }//GEN-LAST:event_JMI_NuevoActionPerformed
-     //Metodo para convertir ArrayList en vector
-    public static Integer[] convertirArrayList(ArrayList<Integer> alDatos){
-        Integer[] arrResultante = new Integer[alDatos.size()]; //Vector al que se le va a pasar el Array List
-        
-        for (int i = 0; i < alDatos.size(); i++) {  //Ciclo para Recorrer el Array List e ingresarlo al vector
-            arrResultante[i]=alDatos.get(i); 
-        }
-        
-        return arrResultante; //Retorna el nuevo Vector
+     void textAlign(int a){ //Metodo para asignarle al ArrayList las celdas a colorear
+    
+ 
+        int []obtenerFilas=JTB_Hoja.getSelectedRows(); //Se ingresan las celdas selecionadas al ArrayList
+        int []obtenerColumnas=JTB_Hoja.getSelectedColumns();
+            
+            textAlignment align = new textAlignment(); //Variable de tipo colorCelda
+            align.filasAlinear=obtenerFilas; //Se envia el vector a la clase colorear
+            align.columnasAlinear=obtenerColumnas;
+            align.tipoTexto=a;
+            JTB_Hoja.setDefaultRenderer(Object.class, align); //Se asigna el Render a la tabla
+            
     }
     void celdasColoreadas(){ //Metodo para asignarle al ArrayList las celdas a colorear
     
@@ -196,6 +256,8 @@ public class Main extends javax.swing.JFrame {
             JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
             
     }
+    
+    
     
     void letrasColor(){ //Metodo para asignarle al ArrayList las celdas a colorear
     
@@ -216,6 +278,30 @@ public class Main extends javax.swing.JFrame {
     private void JMI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_AbrirActionPerformed
         AbrirFile();
     }//GEN-LAST:event_JMI_AbrirActionPerformed
+
+    private void JBT_alineadoIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_alineadoIzqActionPerformed
+        textAlign(1);
+    }//GEN-LAST:event_JBT_alineadoIzqActionPerformed
+
+    private void JBT_alineadoCentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_alineadoCentActionPerformed
+        textAlign(2);
+
+    }//GEN-LAST:event_JBT_alineadoCentActionPerformed
+
+    private void JBT_alineadoDercActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_alineadoDercActionPerformed
+        
+        textAlign(3);
+
+    }//GEN-LAST:event_JBT_alineadoDercActionPerformed
+
+    private void JBT_cambarFondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_cambarFondoActionPerformed
+        celdasColoreadas();
+
+    }//GEN-LAST:event_JBT_cambarFondoActionPerformed
+
+    private void JBT_cambiarFuenteColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_cambiarFuenteColorActionPerformed
+        letrasColor();
+    }//GEN-LAST:event_JBT_cambiarFuenteColorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,19 +465,23 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBT_alineadoCent;
+    private javax.swing.JButton JBT_alineadoDerc;
+    private javax.swing.JButton JBT_alineadoIzq;
+    private javax.swing.JButton JBT_cambarFondo;
+    private javax.swing.JButton JBT_cambiarFuenteColor;
     private javax.swing.JMenuItem JMI_Abrir;
     private javax.swing.JMenuItem JMI_Guardar;
     private javax.swing.JMenuItem JMI_Nuevo;
     private javax.swing.JTable JTB_Hoja;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables

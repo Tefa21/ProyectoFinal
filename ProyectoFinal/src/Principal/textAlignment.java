@@ -2,7 +2,9 @@
 package Principal;
 
 import java.awt.Component;
+import java.awt.Font;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 public class textAlignment extends DefaultTableCellRenderer{
     
@@ -26,8 +28,7 @@ public class textAlignment extends DefaultTableCellRenderer{
       if(validarFila(row)&&validarColumna(column)){//Se verfican las celdas en el vector para colorearlas 
           switch(tipoTexto){
             case 1:
-                this.setHorizontalAlignment(LEFT);
-
+                this.setHorizontalAlignment(SwingConstants.LEFT);
                 break;
             case 2:
                 this.setHorizontalAlignment(CENTER);
