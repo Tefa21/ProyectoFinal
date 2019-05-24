@@ -1,7 +1,6 @@
 package Principal;
 import java.awt.Color;
 import java.sql.*;
-import java.util.ArrayList;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -210,7 +209,6 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_GuardarActionPerformed
-//        RemoverNull();
         //Se Obtiene la cantidad de filas y columnas, luego procede a recorrer toda la tabla
         //obteniendo el dato que se encuentra en cada celda, el No. de fila y el No. de columna en la que se encuentra
         //y estos datos los envia al metodo GuardarTabla.
@@ -221,7 +219,10 @@ public class Main extends javax.swing.JFrame {
         for (int i = 0; i < fila; i++) {
             for (int j = 0; j < columna; j++) {
                 dato = String.valueOf(hoja.getValueAt(i, j));
-                GuardarTabla(dato, i, j);
+                if (dato!="null" || dato!="") {
+                 GuardarTabla(dato, i, j);   
+                }
+                
             }
         }         
         GuardarBD();
@@ -242,9 +243,9 @@ public class Main extends javax.swing.JFrame {
         int []obtenerColumnas=JTB_Hoja.getSelectedColumns();
             
             textAlignment align = new textAlignment(); //Variable de tipo colorCelda
-            align.filasAlinear=obtenerFilas; //Se envia el vector a la clase colorear
-            align.columnasAlinear=obtenerColumnas;
-            align.tipoTexto=a;
+            align.intFilasAlinear=obtenerFilas; //Se envia el vector a la clase colorear
+            align.intColumnasAlinear=obtenerColumnas;
+            align.intTipoTexto=a;
             JTB_Hoja.setDefaultRenderer(Object.class, align); //Se asigna el Render a la tabla
             
     }
@@ -256,8 +257,8 @@ public class Main extends javax.swing.JFrame {
         Color c = JColorChooser.showDialog(this, "Seleccion color" , Color.white); 
             
             colorCelda pintar = new colorCelda(); //Variable de tipo colorCelda
-            pintar.filasColorear=obtenerFilas; //Se envia el vector a la clase colorear
-            pintar.columnasColorear=obtenerColumnas;
+            pintar.intfilasColorear=obtenerFilas; //Se envia el vector a la clase colorear
+            pintar.intcolumnasColorear=obtenerColumnas;
             pintar.colorCelda=c;
             JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
             
@@ -274,8 +275,8 @@ public class Main extends javax.swing.JFrame {
 
             
             colorLetras pintar = new colorLetras(); //Variable de tipo colorCelda
-            pintar.filasColorear=obtenerFilas; //Se envia el vector a la clase colorear
-            pintar.columnasColorear=obtenerColumnas;
+            pintar.intFilasColorear=obtenerFilas; //Se envia el vector a la clase colorear
+            pintar.intColumnasColorear=obtenerColumnas;
             pintar.colorLetra=c;
 
             JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
@@ -379,23 +380,19 @@ public class Main extends javax.swing.JFrame {
         }else{
             try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/hojae", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select dato from archivos where nombre = ?");
+            PreparedStatement pst = cn.prepareStatement("select dato, fila, columna from archivos where nombre = ?");
             pst.setString(1, Nombre);
             ResultSet ConsultaHoja = pst.executeQuery();
             
             
             while(ConsultaHoja.next()){
-               Object []fila = new Object[1];
-               fila[0] = ConsultaHoja.getString("Dato");
+               String dato = ConsultaHoja.getString("Dato");
+               int fila =  Integer.parseInt(ConsultaHoja.getString("fila"));
+               int columna =  Integer.parseInt(ConsultaHoja.getString("columna"));        
                
-                    for (int i = 0; i <20; i++) {
-                    for (int j = 0; j < 40; j++) {
-                        this.JTB_Hoja.setValueAt(fila[0], i, j);
-                    }
-               }  
-                       
+               this.JTB_Hoja.setValueAt(dato, fila, columna);
            }
-            
+              
            }catch (Exception e){
            JOptionPane.showMessageDialog(null, "No Se Cargo la Hoja");
            }
@@ -447,11 +444,13 @@ public class Main extends javax.swing.JFrame {
 		Nodo aux=cima;
                 
 		while (aux!=null){
-                        Dato= String.valueOf(aux.lista.Dato);
-                        Fila= String.valueOf(aux.lista.Fila);
-                        Columna= String.valueOf(aux.lista.Columna);
+                        Dato= String.valueOf(aux.lista.strDato);
+                        Fila= String.valueOf(aux.lista.intFila);
+                        Columna= String.valueOf(aux.lista.intColumna);
                         
-                        try{
+                     if (Dato=="null") Dato=" ";
+                    
+                         try{
                             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/hojae", "root", "");
                             PreparedStatement pst = cn.prepareStatement("insert into archivos values(?,?,?,?,?)");
 
@@ -468,8 +467,12 @@ public class Main extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null,"Error al acceder a la Base de Datos");
                         }
 			aux=aux.Siguiente;
+                        
+                        
+                       
+                        
 		}
-                JOptionPane.showMessageDialog(null,"Tabla Guardada");
+                JOptionPane.showMessageDialog(null,"Tabla Guardada"); 
         }else{
             JOptionPane.showMessageDialog(rootPane, "Ingrese Un Número Válido", "ERROR", HEIGHT);
         }
@@ -499,6 +502,7 @@ public class Main extends javax.swing.JFrame {
             }
         }         
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBT_alineadoCent;
