@@ -2,8 +2,6 @@ package Principal;
 import java.awt.Color;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Vector;
-import java.util.Iterator;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -144,6 +142,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_GuardarActionPerformed
+        RemoverNull();
         int fila, columna;
         String dato;
         fila = this.JTB_Hoja.getRowCount();
@@ -154,7 +153,7 @@ public class Main extends javax.swing.JFrame {
                 GuardarTabla(dato, i, j);
             }
         }         
-        DatosTabla();
+        GuardarBD();
     }//GEN-LAST:event_JMI_GuardarActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -320,6 +319,60 @@ public class Main extends javax.swing.JFrame {
             puntero.Siguiente=nodo;
 	}
     }
+    
+    public void GuardarBD(){
+        String Nombre,ID_Tabla;
+        
+        Nombre=JOptionPane.showInputDialog("Ingrese El Nombre de La Tabla");
+        ID_Tabla=JOptionPane.showInputDialog("Ingrese El ID de La Tabla");
+        boolean Numero = EsNumero(ID_Tabla);
+        
+        if (Numero==true) {
+                String Data[] = new String[5];
+		Nodo aux=cima;
+		while (aux!=null){
+                        Data[0]= String.valueOf(Nombre);
+                        Data[1]= String.valueOf(ID_Tabla);
+                        Data[2]= String.valueOf(aux.lista.Dato);
+                        Data[3]= String.valueOf(aux.lista.Fila);
+                        Data[4]= String.valueOf(aux.lista.Columna);
+                        
+                        try{
+                            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/hojae", "root", "");
+                            PreparedStatement pst = cn.prepareStatement("insert into archivos values(?,?,?,?,?)");
+
+                            pst.setString(1,Data[0]);
+                            pst.setString(2,Data[1]);
+                            pst.setString(3,Data[2]);
+                            pst.setString(4,Data[3]);
+                            pst.setString(5,Data[4]);
+
+                            pst.executeUpdate();
+                             
+                            
+                        }catch (Exception e){
+                            JOptionPane.showMessageDialog(null,"Error al acceder a la Base de Datos");
+                        }
+			aux=aux.Siguiente;
+		}
+                JOptionPane.showMessageDialog(null,"Tabla Guardada");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Ingrese Un Número Válido", "ERROR", HEIGHT);
+        }
+        
+    }
+    
+    public static boolean EsNumero(String ID_Tabla) {
+        boolean resultado;
+        try {
+            Integer.parseInt(ID_Tabla);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+        return resultado;
+    }
+    
     public void RemoverNull(){
         int fila, columna;
         fila = this.JTB_Hoja.getRowCount();
