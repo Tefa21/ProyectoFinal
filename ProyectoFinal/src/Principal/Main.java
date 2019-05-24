@@ -25,6 +25,7 @@ public class Main extends javax.swing.JFrame {
         TamañoHoja();
         new Pegado(JTB_Hoja);
         
+        
     } 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -222,7 +223,6 @@ public class Main extends javax.swing.JFrame {
 //        }
     }
     private void JMI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_AbrirActionPerformed
-        RemoverNull();
         AbrirFile();
     }//GEN-LAST:event_JMI_AbrirActionPerformed
 
