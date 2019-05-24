@@ -9,13 +9,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import say.swing.JFontChooser;
+//import say.swing.JFontChooser;
 
 
 public class Main extends javax.swing.JFrame {
     DefaultTableModel hoja = new DefaultTableModel(); //Declarar el modelo de la Tabla
     Nodo cima = null;
-    JFontChooser font;
+//    JFontChooser font;
                
     public Main() {
         initComponents();
@@ -222,6 +222,7 @@ public class Main extends javax.swing.JFrame {
 //        }
     }
     private void JMI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_AbrirActionPerformed
+        RemoverNull();
         AbrirFile();
     }//GEN-LAST:event_JMI_AbrirActionPerformed
 
@@ -318,6 +319,18 @@ public class Main extends javax.swing.JFrame {
                 }
             puntero.Siguiente=nodo;
 	}
+    }
+    public void RemoverNull(){
+        int fila, columna;
+        fila = this.JTB_Hoja.getRowCount();
+        columna = this.JTB_Hoja.getColumnCount(); 
+        for (int i = 0; i < fila; i++) {
+            for (int j = 0; j < columna; j++) {
+                this.JTB_Hoja.setValueAt("", i, j);
+                String dato = String.valueOf(this.JTB_Hoja.getValueAt(i, j));
+                System.out.print("Dato:"+dato+"...");
+            }
+        }         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
