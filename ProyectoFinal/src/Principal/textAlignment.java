@@ -9,6 +9,6 @@ package Principal;
  *
  * @author alexs
  */
-public class alineacionText {
+public class textAlignment {
     
 }
