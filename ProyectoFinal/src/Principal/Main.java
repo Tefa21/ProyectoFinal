@@ -17,13 +17,13 @@ public class Main extends javax.swing.JFrame {
                
     public Main() {
         initComponents();
-        RemoverNull();
+//        RemoverNull();
         this.setLocationRelativeTo(null);
         Conexion();
         JTB_Hoja.setModel(hoja);
         TamañoHoja();
         new Pegado(JTB_Hoja);
-       RemoverNull();
+//       RemoverNull();
         
     } 
     @SuppressWarnings("unchecked")
@@ -382,12 +382,14 @@ public class Main extends javax.swing.JFrame {
             PreparedStatement pst = cn.prepareStatement("select dato from archivos where nombre = ?");
             pst.setString(1, Nombre);
             ResultSet ConsultaHoja = pst.executeQuery();
-          
+            
+            
             while(ConsultaHoja.next()){
                Object []fila = new Object[1];
                fila[0] = ConsultaHoja.getString("Dato");
-               for (int i = 0; i <40; i++) {
-                    for (int j = 0; j < 20; j++) {
+               
+                    for (int i = 0; i <20; i++) {
+                    for (int j = 0; j < 40; j++) {
                         this.JTB_Hoja.setValueAt(fila[0], i, j);
                     }
                }  
