@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Pegado implements ActionListener {
     
-    //Declaracion de una variable tipo privada declarada tipo Clipboard la cual se encargara de habilitar la funcionalidad del Copiado y Pegado en la Tabla
+  //Declaracion de una variable tipo privada declarada tipo Clipboard la cual se encargara de habilitar la funcionalidad del Copiado y Pegado en la Tabla
     private Clipboard Auxiliar;
     //Declaracion de variable que manejara los datos internos de la Tabla
     private JTable Hoja_Excel ;

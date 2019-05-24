@@ -17,12 +17,13 @@ public class Main extends javax.swing.JFrame {
                
     public Main() {
         initComponents();
+        RemoverNull();
         this.setLocationRelativeTo(null);
         Conexion();
         JTB_Hoja.setModel(hoja);
         TamañoHoja();
         new Pegado(JTB_Hoja);
-        
+       RemoverNull();
         
     } 
     @SuppressWarnings("unchecked")
@@ -227,9 +228,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_JMI_GuardarActionPerformed
 
     private void JMI_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_NuevoActionPerformed
+        RemoverNull();
         if (JOptionPane.showConfirmDialog(rootPane, "¿Seguro desea abrir otra Hoja Electronica, los cambios no se guardarán?",
         "Nueva Hoja", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
          Limpiar();
+        RemoverNull();
         }
     }//GEN-LAST:event_JMI_NuevoActionPerformed
      void textAlign(int a){ //Metodo para asignarle al ArrayList las celdas a colorear
@@ -458,7 +461,7 @@ public class Main extends javax.swing.JFrame {
         return resultado;
     }
     
-    public void RemoverNull(){
+      public void RemoverNull(){
         //Se obtiene la cantidad de filas y columnas de la tabla y luego se recorre la tabla
         //Asignando "" a cada celda y asi remover el dato null
         int fila, columna;
@@ -466,7 +469,7 @@ public class Main extends javax.swing.JFrame {
         columna = this.JTB_Hoja.getColumnCount(); 
         for (int i = 0; i < fila; i++) {
             for (int j = 0; j < columna; j++) {
-                this.JTB_Hoja.setValueAt("", i, j);
+                this.JTB_Hoja.setValueAt(" ", i, j);
             }
         }         
     }
