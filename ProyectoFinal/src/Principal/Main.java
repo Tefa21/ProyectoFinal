@@ -17,12 +17,13 @@ public class Main extends javax.swing.JFrame {
                
     public Main() {
         initComponents();
+//        RemoverNull();
         this.setLocationRelativeTo(null);
         Conexion();
         JTB_Hoja.setModel(hoja);
         TamañoHoja();
         new Pegado(JTB_Hoja);
-        
+//       RemoverNull();
         
     } 
     @SuppressWarnings("unchecked")
@@ -209,7 +210,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMI_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_GuardarActionPerformed
-        RemoverNull();
+//        RemoverNull();
         //Se Obtiene la cantidad de filas y columnas, luego procede a recorrer toda la tabla
         //obteniendo el dato que se encuentra en cada celda, el No. de fila y el No. de columna en la que se encuentra
         //y estos datos los envia al metodo GuardarTabla.
@@ -227,9 +228,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_JMI_GuardarActionPerformed
 
     private void JMI_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_NuevoActionPerformed
+        RemoverNull();
         if (JOptionPane.showConfirmDialog(rootPane, "¿Seguro desea abrir otra Hoja Electronica, los cambios no se guardarán?",
         "Nueva Hoja", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
          Limpiar();
+        RemoverNull();
         }
     }//GEN-LAST:event_JMI_NuevoActionPerformed
      void textAlign(int a){ //Metodo para asignarle al ArrayList las celdas a colorear
@@ -280,6 +283,7 @@ public class Main extends javax.swing.JFrame {
     }
     private void JMI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_AbrirActionPerformed
         AbrirFile();
+        DatosTabla();
     }//GEN-LAST:event_JMI_AbrirActionPerformed
 
     private void JBT_alineadoIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_alineadoIzqActionPerformed
@@ -368,8 +372,34 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void DatosTabla(){
-        
-        
+        String Nombre;
+        Nombre=JOptionPane.showInputDialog("Ingrese El Nombre de La Tabla");
+        if ("".equals(Nombre)){
+            JOptionPane.showMessageDialog(null,"Campo vacio");
+        }else{
+            try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/hojae", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select dato from archivos where nombre = ?");
+            pst.setString(1, Nombre);
+            ResultSet ConsultaHoja = pst.executeQuery();
+            
+            
+            while(ConsultaHoja.next()){
+               Object []fila = new Object[1];
+               fila[0] = ConsultaHoja.getString("Dato");
+               
+                    for (int i = 0; i <20; i++) {
+                    for (int j = 0; j < 40; j++) {
+                        this.JTB_Hoja.setValueAt(fila[0], i, j);
+                    }
+               }  
+                       
+           }
+            
+           }catch (Exception e){
+           JOptionPane.showMessageDialog(null, "No Se Cargo la Hoja");
+           }
+        }        
     }
     
     public void AbrirFile(){    
@@ -413,24 +443,23 @@ public class Main extends javax.swing.JFrame {
         boolean Numero = EsNumero(ID_Tabla);
         
         if (Numero==true) {
-                String Data[] = new String[5];
+                String Dato, Fila, Columna;
 		Nodo aux=cima;
+                
 		while (aux!=null){
-                        Data[0]= String.valueOf(Nombre);
-                        Data[1]= String.valueOf(ID_Tabla);
-                        Data[2]= String.valueOf(aux.lista.Dato);
-                        Data[3]= String.valueOf(aux.lista.Fila);
-                        Data[4]= String.valueOf(aux.lista.Columna);
+                        Dato= String.valueOf(aux.lista.Dato);
+                        Fila= String.valueOf(aux.lista.Fila);
+                        Columna= String.valueOf(aux.lista.Columna);
                         
                         try{
                             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/hojae", "root", "");
                             PreparedStatement pst = cn.prepareStatement("insert into archivos values(?,?,?,?,?)");
 
-                            pst.setString(1,Data[0]);
-                            pst.setString(2,Data[1]);
-                            pst.setString(3,Data[2]);
-                            pst.setString(4,Data[3]);
-                            pst.setString(5,Data[4]);
+                            pst.setString(1,Nombre);
+                            pst.setString(2,ID_Tabla);
+                            pst.setString(3,Dato);
+                            pst.setString(4,Fila);
+                            pst.setString(5,Columna);
 
                             pst.executeUpdate();
                              
@@ -458,7 +487,7 @@ public class Main extends javax.swing.JFrame {
         return resultado;
     }
     
-    public void RemoverNull(){
+      public void RemoverNull(){
         //Se obtiene la cantidad de filas y columnas de la tabla y luego se recorre la tabla
         //Asignando "" a cada celda y asi remover el dato null
         int fila, columna;
@@ -466,7 +495,7 @@ public class Main extends javax.swing.JFrame {
         columna = this.JTB_Hoja.getColumnCount(); 
         for (int i = 0; i < fila; i++) {
             for (int j = 0; j < columna; j++) {
-                this.JTB_Hoja.setValueAt("", i, j);
+                this.JTB_Hoja.setValueAt(" ", i, j);
             }
         }         
     }
