@@ -48,13 +48,13 @@ public class textAlignment extends DefaultTableCellRenderer{
                 break;
             case 6:
                 this.setVerticalAlignment(BOTTOM);
-            
+         
             break;
           
           }
                 
       }else{
-          this.setBackground(null);
+           this.setHorizontalAlignment(SwingConstants.LEFT);
       }
       
       return this;

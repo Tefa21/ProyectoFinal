@@ -29,7 +29,7 @@ public class colorLetras extends DefaultTableCellRenderer{
           this.setForeground(colorLetra); //Se le asigna un color
                 
       }else{
-          this.setBackground(null);
+          this.setForeground(null);
       }
       
       return this;
