@@ -184,13 +184,10 @@ public class Main extends javax.swing.JFrame {
     }
     void celdasColoreadas(){ //Metodo para asignarle al ArrayList las celdas a colorear
     
-//        ArrayList obtenerFilas = new ArrayList<Integer>(); //Se crea el ArrayList
-//        ArrayList obtenerColumnas = new ArrayList<Integer>(); //Se crea el ArrayList
  
         int []obtenerFilas=JTB_Hoja.getSelectedRows(); //Se ingresan las celdas selecionadas al ArrayList
         int []obtenerColumnas=JTB_Hoja.getSelectedColumns();
         Color c = JColorChooser.showDialog(this, "Seleccion color" , Color.white); 
-//        if(!obtenerFilas.isEmpty()&&!obtenerColumnas.isEmpty()){ //Se verifica que se hayan selecionado celdas
             
             colorCelda pintar = new colorCelda(); //Variable de tipo colorCelda
             pintar.filasColorear=obtenerFilas; //Se envia el vector a la clase colorear
@@ -198,19 +195,15 @@ public class Main extends javax.swing.JFrame {
             pintar.colorCelda=c;
             JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
             
-//        }
     }
     
     void letrasColor(){ //Metodo para asignarle al ArrayList las celdas a colorear
     
-//        ArrayList obtenerFilas = new ArrayList<Integer>(); //Se crea el ArrayList
-//        ArrayList obtenerColumnas = new ArrayList<Integer>(); //Se crea el ArrayList
  
         int []obtenerFilas=JTB_Hoja.getSelectedRows(); //Se ingresan las celdas selecionadas al ArrayList
         int []obtenerColumnas=JTB_Hoja.getSelectedColumns();
         Color c = JColorChooser.showDialog(this, "Seleccion color" , Color.white); 
 
-//        if(!obtenerFilas.isEmpty()&&!obtenerColumnas.isEmpty()){ //Se verifica que se hayan selecionado celdas
             
             colorLetras pintar = new colorLetras(); //Variable de tipo colorCelda
             pintar.filasColorear=obtenerFilas; //Se envia el vector a la clase colorear
@@ -219,7 +212,6 @@ public class Main extends javax.swing.JFrame {
 
             JTB_Hoja.setDefaultRenderer(Object.class, pintar); //Se asigna el Render a la tabla
             
-//        }
     }
     private void JMI_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_AbrirActionPerformed
         AbrirFile();
