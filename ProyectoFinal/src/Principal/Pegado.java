@@ -136,16 +136,16 @@ public class Pegado implements ActionListener {
          int num_filas=Hoja_Excel.getSelectedRowCount();
          //Declaracion de vectores para que el programa conozca el tamaño del bloque seleccionado
          //vector para las filas
-         int[] rowsselected=Hoja_Excel.getSelectedRows();
+         int[] fila_seleccionada =Hoja_Excel.getSelectedRows();
          //vector para las columnas
-         int[] colsselected=Hoja_Excel.getSelectedColumns();
+         int[] col_seleccionada =Hoja_Excel.getSelectedColumns();
          
          //ciclo for para obtener el o los valores a copiar del bloque de celdas seleccionadas por el usuario
          for (int ciclo_fil=0;ciclo_fil<num_filas;ciclo_fil++){
             for (int ciclo_col=0;ciclo_col<num_col;ciclo_col++){
                 //.append se encarga de guardar en la variable "copiar" el contenido que esta entre los ( ) en tipo cadena, esto por declarar la variable tipo StringBuffer
                 //la variable se encarga de guardar los datos que se encuentran en la 
-                Copiar.append(Hoja_Excel.getValueAt(rowsselected[ciclo_fil],colsselected[ciclo_col]));        
+                Copiar.append(Hoja_Excel.getValueAt(fila_seleccionada [ciclo_fil],col_seleccionada [ciclo_col]));        
                 //ciclo if el cual se encargara de colocar los datos copiados en columnas y luego en el metodo ProcedimientoPegado se agregaran de la forma ingresada por el usuario      
                if (ciclo_col<num_col-1) Copiar.append("\t");
                         
