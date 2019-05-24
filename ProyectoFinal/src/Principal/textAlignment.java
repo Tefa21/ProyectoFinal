@@ -8,9 +8,9 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 public class textAlignment extends DefaultTableCellRenderer{
     
-    public int[]filasAlinear; //VEctor para verificar las celdas a alinear
-    public int[]columnasAlinear;
-    int tipoTexto;
+    public int[]intFilasAlinear; //Vector para verificar las celdas a alinear
+    public int[]intColumnasAlinear;
+    int intTipoTexto;
    @Override 
    
              
@@ -25,10 +25,10 @@ public class textAlignment extends DefaultTableCellRenderer{
        //Llamada al constructor padre
       super.getTableCellRendererComponent(table,value,isSelected,
              hasFocus,row,column);
-      if(validarFila(row)&&validarColumna(column)){//Se verfican las celdas en el vector para colorearlas 
-          switch(tipoTexto){
+     if(validarFila(row)&&validarColumna(column)){//Se verfican las celdas en el vector para colorearlas 
+          switch(intTipoTexto){
             case 1:
-                this.setHorizontalAlignment(SwingConstants.LEFT);
+                this.setHorizontalAlignment(LEFT);
                 break;
             case 2:
                 this.setHorizontalAlignment(CENTER);
@@ -37,20 +37,7 @@ public class textAlignment extends DefaultTableCellRenderer{
             case 3:
                 this.setHorizontalAlignment(RIGHT);
                 
-                break;
-            case 4:
-                this.setVerticalAlignment(CENTER);
-                
-                break;
-            case 5:
-                this.setVerticalAlignment(TOP);
-                
-                break;
-            case 6:
-                this.setVerticalAlignment(BOTTOM);
-         
-            break;
-          
+                break;          
           }
                 
       }else{
@@ -61,33 +48,33 @@ public class textAlignment extends DefaultTableCellRenderer{
    }
    //Validar celdas en la matriz
    private boolean validarFila (int Row){
-       boolean resultado = false; //Inicializacion de variable
+       boolean blnResultado = false; //Inicializacion de variable
        
-       for(Integer arrayColorearCeldas: filasAlinear ){ //Ciclo para recorrrer el vector y verificar si la celda se encuentra en el
+       for(Integer arrayColorearCeldas: intFilasAlinear ){ //Ciclo para recorrrer el vector y verificar si la celda se encuentra en el
            
             if(arrayColorearCeldas==Row){
-                resultado = true;
+                blnResultado = true;
                 break;
                
            }
        }
        
-       return resultado;
+       return blnResultado;
    }
    private boolean validarColumna (int Column){
-       boolean resultado = false; //Inicializacion de variable
+       boolean blnResultado = false; //Inicializacion de variable
        
-       for(Integer arrayColorearCeldas: columnasAlinear ){ //Ciclo para recorrrer el vector y verificar si la celda se encuentra en el
+       for(Integer arrayColorearCeldas: intColumnasAlinear ){ //Ciclo para recorrrer el vector y verificar si la celda se encuentra en el
            
                    if(arrayColorearCeldas==Column){
-                   resultado = true;
+                   blnResultado = true;
                    break;
               // }
                
            }
        }
        
-       return resultado;
+       return blnResultado;
    }
     
 }

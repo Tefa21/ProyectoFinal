@@ -1,12 +1,12 @@
 package Principal;
 
 public class Lista {
-    public String Dato;
-    public int Fila;
-    public int Columna;
+    public String strDato;
+    public int intFila;
+    public int intColumna;
     public Lista(String Dato, int Fila, int Columna) {
-        this.Dato=Dato;
-	this.Fila=Fila;
-        this.Columna=Columna;
+        this.strDato=Dato;
+	this.intFila=Fila;
+        this.intColumna=Columna;
     }
 }

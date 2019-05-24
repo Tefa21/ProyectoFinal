@@ -9,8 +9,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class colorCelda extends DefaultTableCellRenderer{
     
     //Vector para verificar las celdas a colorear
-    public int[]filasColorear; 
-    public int[]columnasColorear;
+    public int[]intfilasColorear; 
+    public int[]intcolumnasColorear;
     Color colorCelda;
    @Override 
    
@@ -39,32 +39,32 @@ public class colorCelda extends DefaultTableCellRenderer{
    }
    //Validar celdas en la matriz
    private boolean validarFila (int Row){
-       boolean resultado = false; //Inicializacion de variable
+       boolean blnResultado = false; //Inicializacion de variable
        
-       for(Integer arrayColorearCeldas: filasColorear ){ //Ciclo para recorrrer el vector y verificar si la celda se encuentra en el
+       for(Integer arrayColorearCeldas: intfilasColorear ){ //Ciclo para recorrrer el vector y verificar si la celda se encuentra en el
       
             if(arrayColorearCeldas==Row){
                 
-                resultado = true;
+                blnResultado = true;
                 break;
                
            }
        }
        
-       return resultado;
+       return blnResultado;
    }
    private boolean validarColumna (int Column){
-       boolean resultado = false; //Inicializacion de variable
+       boolean blnResultado = false; //Inicializacion de variable
        
-       for(Integer arrayColorearCeldas: columnasColorear ){ //Ciclo para recorrrer el vector y verificar si la celda se encuentra en el
+       for(Integer arrayColorearCeldas: intcolumnasColorear ){ //Ciclo para recorrrer el vector y verificar si la celda se encuentra en el
            
             if(arrayColorearCeldas==Column){
-                resultado = true;
+                blnResultado = true;
                 break;  
            }
        }
        
-       return resultado;
+       return blnResultado;
    }
    
 
