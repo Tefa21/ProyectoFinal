@@ -368,7 +368,7 @@ public class Main extends javax.swing.JFrame {
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/hojae", "root", "");
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "No se conecto");
+            JOptionPane.showMessageDialog(null, "No se conecto"+ e);
         }
     }
     
@@ -433,24 +433,29 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void GuardarBD(){
-        String Nombre,ID_Tabla;
+        if (cima==null) {
+           JOptionPane.showMessageDialog(null,"Tabla Vacia"); 
+        }else{
+            String Nombre,ID_Tabla;
         
-        Nombre=JOptionPane.showInputDialog("Ingrese El Nombre de La Tabla");
-        ID_Tabla=JOptionPane.showInputDialog("Ingrese El ID de La Tabla");
-        boolean Numero = EsNumero(ID_Tabla);
+            Nombre=JOptionPane.showInputDialog("Ingrese El Nombre de La Tabla");
+            ID_Tabla=JOptionPane.showInputDialog("Ingrese El ID de La Tabla");
+            boolean Numero = EsNumero(ID_Tabla);
         
-        if (Numero==true) {
+            if (Numero==true) {
                 String Dato, Fila, Columna;
 		Nodo aux=cima;
                 
 		while (aux!=null){
                         Dato= String.valueOf(aux.lista.strDato);
+                        
+                     if (Dato=="null"){
+                        aux=aux.Siguiente; 
+                     }else{
+                        
                         Fila= String.valueOf(aux.lista.intFila);
                         Columna= String.valueOf(aux.lista.intColumna);
-                        
-                     if (Dato=="null") Dato=" ";
-                    
-                         try{
+                        try{
                             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/hojae", "root", "");
                             PreparedStatement pst = cn.prepareStatement("insert into archivos values(?,?,?,?,?)");
 
@@ -467,16 +472,13 @@ public class Main extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null,"Error al acceder a la Base de Datos");
                         }
 			aux=aux.Siguiente;
-                        
-                        
-                       
-                        
+                     }       
 		}
                 JOptionPane.showMessageDialog(null,"Tabla Guardada"); 
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Ingrese Un Número Válido", "ERROR", HEIGHT);
-        }
-        
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Ingrese Un Número Válido", "ERROR", HEIGHT);
+            }
+        }   
     }
     
     public static boolean EsNumero(String ID_Tabla) {
